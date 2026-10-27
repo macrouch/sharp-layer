@@ -43,6 +43,7 @@ jobs:
           mkdir -p nodejs/node_modules/sharp/lib
           mv index.js nodejs/node_modules/sharp/lib/
           mv node_modules/sharp/package.json nodejs/node_modules/sharp/
+          node -e "const fs = require('node:fs'); const file = 'nodejs/node_modules/sharp/package.json'; const pkg = JSON.parse(fs.readFileSync(file, 'utf8')); pkg.main = './lib/index.js'; pkg.types = './lib/index.d.ts'; pkg.exports = { ...(pkg.exports || {}), '.': { types: './lib/index.d.ts', import: './lib/index.js', require: './lib/index.js' } }; fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + '\n');"
           mv node_modules/sharp/LICENSE nodejs/node_modules/sharp/
           mv node_modules/sharp/lib/index.d.ts nodejs/node_modules/sharp/lib/
           mv node_modules/@img nodejs/node_modules/
@@ -61,6 +62,7 @@ jobs:
           mkdir -p nodejs/node_modules/sharp/lib
           mv index.js nodejs/node_modules/sharp/lib/
           mv node_modules/sharp/package.json nodejs/node_modules/sharp/
+          node -e "const fs = require('node:fs'); const file = 'nodejs/node_modules/sharp/package.json'; const pkg = JSON.parse(fs.readFileSync(file, 'utf8')); pkg.main = './lib/index.js'; pkg.types = './lib/index.d.ts'; pkg.exports = { ...(pkg.exports || {}), '.': { types: './lib/index.d.ts', import: './lib/index.js', require: './lib/index.js' } }; fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + '\n');"
           mv node_modules/sharp/LICENSE nodejs/node_modules/sharp/
           mv node_modules/sharp/lib/index.d.ts nodejs/node_modules/sharp/lib/
           mv node_modules/@img nodejs/node_modules/
@@ -81,6 +83,7 @@ jobs:
           mkdir -p nodejs/node_modules/sharp/lib
           mv index.js nodejs/node_modules/sharp/lib/
           mv node_modules/sharp/package.json nodejs/node_modules/sharp/
+          node -e "const fs = require('node:fs'); const file = 'nodejs/node_modules/sharp/package.json'; const pkg = JSON.parse(fs.readFileSync(file, 'utf8')); pkg.main = './lib/index.js'; pkg.types = './lib/index.d.ts'; pkg.exports = { ...(pkg.exports || {}), '.': { types: './lib/index.d.ts', import: './lib/index.js', require: './lib/index.js' } }; fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + '\n');"
           mv node_modules/sharp/LICENSE nodejs/node_modules/sharp/
           mv node_modules/sharp/lib/index.d.ts nodejs/node_modules/sharp/lib/
           mv node_modules/@img nodejs/node_modules/
