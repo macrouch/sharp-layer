@@ -46,6 +46,7 @@ jobs:
           mv node_modules/sharp/LICENSE nodejs/node_modules/sharp/
           mv node_modules/sharp/lib/index.d.ts nodejs/node_modules/sharp/lib/
           mv node_modules/@img nodejs/node_modules/
+          node -e "const fs = require('node:fs'); const file = 'nodejs/node_modules/sharp/package.json'; const pkg = JSON.parse(fs.readFileSync(file, 'utf8')); pkg.main = './lib/index.js'; pkg.types = './lib/index.d.ts'; pkg.exports = { '.': { import: { types: './lib/index.d.ts', default: './lib/index.js' }, require: { types: './lib/index.d.ts', default: './lib/index.js' } } }; fs.writeFileSync(file, JSON.stringify(pkg));"
           zip -r release-arm64 nodejs
       - name: Clean arm64
         run: rm -rf nodejs node_modules # keep package.json for keeping the version
@@ -64,6 +65,7 @@ jobs:
           mv node_modules/sharp/LICENSE nodejs/node_modules/sharp/
           mv node_modules/sharp/lib/index.d.ts nodejs/node_modules/sharp/lib/
           mv node_modules/@img nodejs/node_modules/
+          node -e "const fs = require('node:fs'); const file = 'nodejs/node_modules/sharp/package.json'; const pkg = JSON.parse(fs.readFileSync(file, 'utf8')); pkg.main = './lib/index.js'; pkg.types = './lib/index.d.ts'; pkg.exports = { '.': { import: { types: './lib/index.d.ts', default: './lib/index.js' }, require: { types: './lib/index.d.ts', default: './lib/index.js' } } }; fs.writeFileSync(file, JSON.stringify(pkg));"
           zip -r release-x64 nodejs
       - name: Clean x64
         run: rm -rf nodejs node_modules # keep package.json for keeping the version
@@ -84,6 +86,7 @@ jobs:
           mv node_modules/sharp/LICENSE nodejs/node_modules/sharp/
           mv node_modules/sharp/lib/index.d.ts nodejs/node_modules/sharp/lib/
           mv node_modules/@img nodejs/node_modules/
+          node -e "const fs = require('node:fs'); const file = 'nodejs/node_modules/sharp/package.json'; const pkg = JSON.parse(fs.readFileSync(file, 'utf8')); pkg.main = './lib/index.js'; pkg.types = './lib/index.d.ts'; pkg.exports = { '.': { import: { types: './lib/index.d.ts', default: './lib/index.js' }, require: { types: './lib/index.d.ts', default: './lib/index.js' } } }; fs.writeFileSync(file, JSON.stringify(pkg));"
           zip -r release-all nodejs
 
       - name: Test
