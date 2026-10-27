@@ -18,11 +18,11 @@ jobs:
       contents: write
     steps:
       - name: Setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: '^20.10.0'
+          node-version: 'lts/jod'
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
       - name: Install esbuild
         run: npm i -g esbuild@0.18.20
 
@@ -37,7 +37,7 @@ jobs:
           path: 'package.json'
           prop_path: 'dependencies.sharp'
       - name: esbuild - arm64
-        run: esbuild --bundle ./node_modules/sharp/ --outfile=index.js --minify --format=cjs --platform=node
+        run: esbuild --bundle ./node_modules/sharp/ --outfile=index.js --minify --format=cjs --platform=node --external=sharp --external=@img/*
       - name: Zip - arm64
         run: |
           mkdir -p nodejs/node_modules/sharp/lib
@@ -55,7 +55,7 @@ jobs:
       - name: Remove musl-based binary # @npm/cli#6914
         run: rm -rf node_modules/@img/*-linuxmusl*
       - name: esbuild - x64
-        run: esbuild --bundle ./node_modules/sharp/ --outfile=index.js --minify --format=cjs --platform=node
+        run: esbuild --bundle ./node_modules/sharp/ --outfile=index.js --minify --format=cjs --platform=node --external=sharp --external=@img/*
       - name: Zip - x64
         run: |
           mkdir -p nodejs/node_modules/sharp/lib
@@ -75,7 +75,7 @@ jobs:
       - name: Remove musl-based binary # @npm/cli#6914
         run: rm -rf node_modules/@img/*-linuxmusl*
       - name: esbuild - all
-        run: esbuild --bundle ./node_modules/sharp/ --outfile=index.js --minify --format=cjs --platform=node
+        run: esbuild --bundle ./node_modules/sharp/ --outfile=index.js --minify --format=cjs --platform=node --external=sharp --external=@img/*
       - name: Zip - all
         run: |
           mkdir -p nodejs/node_modules/sharp/lib
